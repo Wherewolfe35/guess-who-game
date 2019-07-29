@@ -12,7 +12,7 @@ var people = [
     githubUsername: 'mbmosman'
   },
   {
-    name: 'Chris',
+    name: 'Chris Black',
     githubUsername: 'christopher-black'
   },
   {
@@ -64,7 +64,7 @@ var people = [
     githubUsername: 'maddisonbruckelmyer01'
   },
   {
-    name: 'Chris',
+    name: 'Chris O\'Bannon',
     githubUsername: 'Chris0Bannon'
   },
   {
