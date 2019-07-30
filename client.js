@@ -1,24 +1,30 @@
 console.log(people);
 
-$(document).ready(postPics);
+$(document).ready(shuffleOrder);
 
 let answer = '';
 
+function shuffleOrder() {
+    shuffleArray(people);
+    $('#pictureList').children().remove();
+    postPics();
+}
+
 function postPics(){
-    // $('#pictureList').append(`<div>${people[3].githubUsername}</div>`)
     for(let persons of people){
         let profPic = $(`<div><img src="https://github.com/${persons.githubUsername}.png?size=250" alt="Profile image of ${persons.name}"></div>`);
-        profPic.data('name', persons.name)
+        profPic.data('name', persons.name);
         $('#pictureList').append(profPic);
     }
     newName();
     $('div').on('click', clickMe);
 }
 
+
 function newName(){
-    let i = randomNumber(0, 24)
-    $('.findName').text(people[i].name)
-    answer = people[i].name;
+    let x = randomNumber(0, 24);
+    $('.findName').text(people[x].name);
+    answer = people[x].name;
 }
 
 function randomNumber(min, max) {
@@ -31,10 +37,18 @@ function randomNumber(min, max) {
 function clickMe(){
     console.log('I\'ve been clicked!');
     if($(this).data('name') === answer){
-        alert('You are correct! On to the next brilliant developer...');
-        // setTimeout(newName(); {alert('You are correct! On to the next brilliant developer...');}, 2000);
-        newName();
+        let alertWindow = window.open("", "alertWindow", "width=200, height=200");
+        alertWindow.document.write('<p>You are correct! On to the next brilliant developer...</p>')
+        setTimeout(function () { alertWindow.close(); shuffleOrder();}, 2000);
+        // newName();
     } else {
         alert('Whoops! Look closely at the name and picture and try again...')
     };
+}
+
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
 }
