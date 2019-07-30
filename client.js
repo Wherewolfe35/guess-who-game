@@ -12,7 +12,7 @@ function shuffleOrder() {
 
 function postPics(){
     for(let persons of people){
-        let profPic = $(`<div><img src="https://github.com/${persons.githubUsername}.png?size=250" alt="Profile image of ${persons.name}"></div>`);
+        let profPic = $(`<div><img class="image" src="https://github.com/${persons.githubUsername}.png?size=250" alt="Profile image of ${persons.name}"></div>`);
         profPic.data('name', persons.name);
         $('#pictureList').append(profPic);
     }
@@ -37,7 +37,7 @@ function randomNumber(min, max) {
 function clickMe(){
     console.log('I\'ve been clicked!');
     if($(this).data('name') === answer){
-        let alertWindow = window.open("", "alertWindow", "width=200, height=200");
+        let alertWindow = window.open("", "alertWindow", "width=400, height=150");
         alertWindow.document.write('<p>You are correct! On to the next brilliant developer...</p>')
         setTimeout(function () { alertWindow.close(); shuffleOrder();}, 2000);
         // newName();
