@@ -8,11 +8,12 @@ function shuffleOrder() {
     shuffleArray(people);
     $('#pictureList').children().remove();
     postPics();
+    $('button').on('click', cheatMode);
 }
 
 function postPics(){
     for(let persons of people){
-        let profPic = $(`<div><img class="image" src="https://github.com/${persons.githubUsername}.png?size=250" alt="Profile image of ${persons.name}"></div>`);
+        let profPic = $(`<div><img class="image" src="https://github.com/${persons.githubUsername}.png?size=250" alt="Profile image of ${persons.name}"><div class="not-text">${persons.name}</div></div>`);
         profPic.data('name', persons.name);
         $('#pictureList').append(profPic);
     }
@@ -51,4 +52,8 @@ function shuffleArray(array) {
         const j = Math.floor(Math.random() * (i + 1));
         [array[i], array[j]] = [array[j], array[i]];
     }
+}
+
+function cheatMode() {
+    $('.not-text').toggleClass('text');
 }
