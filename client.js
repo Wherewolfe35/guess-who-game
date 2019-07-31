@@ -4,6 +4,7 @@ $(document).ready(shuffleOrder);
 
 let answer = '';
 
+//rearrange the order of pictures
 function shuffleOrder() {
     shuffleArray(people);
     $('#pictureList').children().remove();
@@ -11,6 +12,7 @@ function shuffleOrder() {
     $('button').on('click', cheatMode);
 }
 
+// append pictures to the DOM
 function postPics(){
     for(let persons of people){
         let profPic = $(`<div><img class="image" src="https://github.com/${persons.githubUsername}.png?size=250" alt="Profile image of ${persons.name}"><div class="not-text">${persons.name}</div></div>`);
@@ -21,7 +23,7 @@ function postPics(){
     $('div').on('click', clickMe);
 }
 
-
+// randomly assign a new name to pick
 function newName(){
     let x = randomNumber(0, 24);
     $('.findName').text(people[x].name);
@@ -41,12 +43,12 @@ function clickMe(){
         let alertWindow = window.open("", "alertWindow", "width=400, height=150");
         alertWindow.document.write('<p>You are correct! On to the next brilliant developer...</p>')
         setTimeout(function () { alertWindow.close(); shuffleOrder();}, 2000);
-        // newName();
     } else {
         alert('Whoops! Look closely at the name and picture and try again...')
     };
 }
 
+//return array with a shuffled order
 function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -54,6 +56,12 @@ function shuffleArray(array) {
     }
 }
 
+//allow names to be shown on each picture
 function cheatMode() {
     $('.not-text').toggleClass('text');
+    if($('button').text() === 'Enable Cheat Mode'){
+        $('button').text('Disable Cheat Mode');
+    } else {
+        $('button').text('Enable Cheat Mode');
+    }
 }
